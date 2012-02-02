@@ -11,18 +11,19 @@ import com.vaadin.terminal.Resource;
 import com.vaadin.terminal.ThemeResource;
 import com.vaadin.terminal.URIHandler;
 import com.vaadin.ui.Embedded;
-import com.vaadin.ui.VerticalLayout;
+
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.datagenerator.XmlDataGenerator;
 
 /**
  * @author marc
  * 
  */
-public abstract class FusionChart extends VerticalLayout {
+public abstract class FusionChart extends Embedded {
 
 	/** serialVersionUID */
 	private static final long serialVersionUID = 4830248025522579621L;
 
-	private final Embedded embeddedChart;
+	protected final XmlDataGenerator xmlDataGenerator;
 
 	private String subcaption;
 	private String xAxisName;
@@ -34,16 +35,15 @@ public abstract class FusionChart extends VerticalLayout {
 	}
 
 	public FusionChart(final Resource chartResource) {
-		embeddedChart = new Embedded(null, chartResource);
+		super(null, chartResource);
+
+		this.xmlDataGenerator = new XmlDataGenerator();
 
 		setWidth("400px");
 		setHeight("400px");
-		embeddedChart.setWidth("400px");
-		embeddedChart.setHeight("400px");
 
-		embeddedChart.setParameter("FlashVars", "&dataUrl=" + getChartId());
+		setParameter("FlashVars", "&dataUrl=" + getChartId());
 
-		addComponent(embeddedChart);
 	}
 
 	protected URIHandler createDataChartHandler() {
@@ -60,10 +60,6 @@ public abstract class FusionChart extends VerticalLayout {
 				return null;
 			}
 		};
-	}
-
-	public Embedded getEmbeddedChart() {
-		return embeddedChart;
 	}
 
 	protected abstract String getChartId();
