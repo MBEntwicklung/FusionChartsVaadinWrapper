@@ -8,7 +8,7 @@ import com.vaadin.Application;
 public class Doughnut2D extends SingleSeriesChart {
 
 	public Doughnut2D(final Application application) {
-		super("Charts/Column2D.swf");
+		super("Charts/Doughnut2D.swf");
 
 		application.getMainWindow().addURIHandler(createDataChartHandler());
 	}

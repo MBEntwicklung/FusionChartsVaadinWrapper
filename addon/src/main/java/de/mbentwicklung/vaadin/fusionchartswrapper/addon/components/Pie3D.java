@@ -8,7 +8,7 @@ import com.vaadin.Application;
 public class Pie3D extends SingleSeriesChart {
 
 	public Pie3D(final Application application) {
-		super("Charts/Column2D.swf");
+		super("Charts/Pie3D.swf");
 
 		application.getMainWindow().addURIHandler(createDataChartHandler());
 	}

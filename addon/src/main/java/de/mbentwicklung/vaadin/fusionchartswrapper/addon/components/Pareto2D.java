@@ -8,7 +8,7 @@ import com.vaadin.Application;
 public class Pareto2D extends SingleSeriesChart {
 
 	public Pareto2D(final Application application) {
-		super("Charts/Column2D.swf");
+		super("Charts/Pareto2D.swf");
 
 		application.getMainWindow().addURIHandler(createDataChartHandler());
 	}

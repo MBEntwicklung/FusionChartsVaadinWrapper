@@ -8,7 +8,7 @@ import com.vaadin.Application;
 public class Line extends SingleSeriesChart {
 
 	public Line(final Application application) {
-		super("Charts/Column2D.swf");
+		super("Charts/Line.swf");
 
 		application.getMainWindow().addURIHandler(createDataChartHandler());
 	}

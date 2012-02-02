@@ -15,7 +15,7 @@ import com.vaadin.Application;
 public class Column3D extends SingleSeriesChart {
 
 	public Column3D(final Application application) {
-		super("Charts/Column2D.swf");
+		super("Charts/Column3D.swf");
 
 		application.getMainWindow().addURIHandler(createDataChartHandler());
 	}
