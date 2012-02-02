@@ -2,6 +2,7 @@ package de.mbentwicklung.vaadin.fusionchartswrapper.addon.components;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.vaadin.terminal.Resource;
@@ -42,8 +43,8 @@ public abstract class SingleSeriesChart extends FusionChart {
 		}
 	}
 
-	public void addData(final Data data) {
-		datas.add(data);
+	public void addData(final Data ... data) {
+		datas.addAll(Arrays.asList(data));
 	}
 
 	public List<Data> getDatas() {
@@ -51,7 +52,7 @@ public abstract class SingleSeriesChart extends FusionChart {
 	}
 
 	public void addTrendLine(final Line line) {
-		trendlines.add(line);
+		trendlines.addAll(Arrays.asList(line));
 	}
 	
 	public List<Line> getTrendlines() {

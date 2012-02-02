@@ -39,6 +39,8 @@ public class XmlDataGenerator {
 
 		try {
 			template = velocityEngine.getTemplate(TPL_SINGLE_SERIES, UTF_8);
+			
+			velocityEngine.addProperty("", chart.getDatas());
 			StringWriter writer = new StringWriter();
 			template.merge(context, writer);
 
