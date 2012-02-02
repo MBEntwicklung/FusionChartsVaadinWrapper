@@ -4,6 +4,7 @@ import com.vaadin.Application;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Window;
 
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.Data;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Area2D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Bar2D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Column2D;
@@ -27,21 +28,22 @@ public class AddonDemoApplication extends Application {
 	public void init() {
 		window = new Window("My Vaadin Application");
 		setMainWindow(window);
-		
+
 		final GridLayout layout = new GridLayout(3, 4);
-		
+
 		layout.addComponent(new Column2D(this));
 		layout.addComponent(new Column3D(this));
 		layout.addComponent(new Bar2D(this));
 		layout.addComponent(new Line(this));
-		layout.addComponent(new Area2D(this));
+		layout.addComponent(Area2D.create(this, new Data("Test 1", 1),
+				new Data("Test 2", 2), new Data("Test 3", 3)));
 		layout.addComponent(new Pie2D(this));
 		layout.addComponent(new Pie3D(this));
 		layout.addComponent(new Doughnut2D(this));
 		layout.addComponent(new Doughnut3D(this));
 		layout.addComponent(new Pareto2D(this));
 		layout.addComponent(new Pareto3D(this));
-		
+
 		window.setContent(layout);
 	}
 }
