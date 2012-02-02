@@ -1,5 +1,6 @@
 package de.mbentwicklung.vaadin.fusionchartswrapper.addon.components;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,11 @@ public abstract class SingleSeriesChart extends FusionChart {
 
 		this.datas = new ArrayList<Data>();
 		this.trendlines = new ArrayList<Line>();
+	}
+	
+	@Override
+	protected InputStream getXmlDataInputStream() {
+		return xmlDataGenerator.generateSingleSeriesDataTemplate(this);
 	}
 
 	@Override
