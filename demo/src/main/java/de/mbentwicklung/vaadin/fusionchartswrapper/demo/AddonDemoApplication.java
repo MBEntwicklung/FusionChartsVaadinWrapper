@@ -11,6 +11,7 @@ import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Column2D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Column3D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Doughnut2D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Doughnut3D;
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.FusionChart;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Line;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Pareto2D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Pareto3D;
@@ -31,18 +32,18 @@ public class AddonDemoApplication extends Application {
 
 		final GridLayout layout = new GridLayout(3, 4);
 
-		layout.addComponent(new Column2D(this));
-		layout.addComponent(new Column3D(this));
-		layout.addComponent(new Bar2D(this));
-		layout.addComponent(new Line(this));
-		layout.addComponent(Area2D.create(this, new Data("Test 1", 1),
-				new Data("Test 2", 2), new Data("Test 3", 3)));
-		layout.addComponent(new Pie2D(this));
-		layout.addComponent(new Pie3D(this));
-		layout.addComponent(new Doughnut2D(this));
-		layout.addComponent(new Doughnut3D(this));
-		layout.addComponent(new Pareto2D(this));
-		layout.addComponent(new Pareto3D(this));
+		layout.addComponent(new Column2D());
+		layout.addComponent(new Column3D());
+		layout.addComponent(new Bar2D());
+		layout.addComponent(new Line());
+		layout.addComponent(Area2D.create(new Data("Test 1", 1), new Data(
+				"Test 2", 2), new Data("Test 3", 3)));
+		layout.addComponent(new Pie2D());
+		layout.addComponent(new Pie3D());
+		layout.addComponent(new Doughnut2D());
+		layout.addComponent(new Doughnut3D());
+		layout.addComponent(new Pareto2D());
+		layout.addComponent(new Pareto3D());
 
 		window.setContent(layout);
 	}
