@@ -8,7 +8,7 @@
     <categories>
  
 #foreach( $set in $sets )
-	#if ($set.dataType == "CETEGORY")
+	#if ($set.dataType == "CATEGORY")
 	<category label='$set.value' />
 	#end
 	#if ($set.dataType == "VLINE")
