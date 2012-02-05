@@ -11,6 +11,7 @@ import com.vaadin.terminal.Resource;
  * @author marc
  * 
  */
+@SuppressWarnings("serial")
 public class StackedChart extends FusionChart {
 
 	public StackedChart(Resource chartResource) {
