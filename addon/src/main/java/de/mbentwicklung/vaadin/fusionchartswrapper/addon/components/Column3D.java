@@ -3,7 +3,6 @@
  */
 package de.mbentwicklung.vaadin.fusionchartswrapper.addon.components;
 
-import com.vaadin.Application;
 
 /**
  * @author marc
@@ -12,7 +11,7 @@ import com.vaadin.Application;
 @SuppressWarnings("serial")
 public class Column3D extends SingleSeriesChart {
 
-	public Column3D(final Application application) {
+	public Column3D() {
 		super("Charts/Column3D.swf");
 	}
 }
