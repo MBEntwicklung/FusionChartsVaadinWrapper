@@ -21,6 +21,8 @@ public class XmlDataGenerator {
 	private static final String UTF_8 = "UTF-8";
 	private static final String TPL_SINGLE_SERIES = "chart-templates/single-series-charts.tpl";
 	private static final String TPL_MULTI_SERIES = "chart-templates/multi-series-charts.tpl";
+	private static final String TPL_STACKED = "chart-templates/stacked-charts.tpl";
+	private static final String TPL_SCROLL = "chart-templates/scroll-charts.tpl";
 	private VelocityEngine velocityEngine;
 
 	public XmlDataGenerator() {
@@ -60,26 +62,25 @@ public class XmlDataGenerator {
 		final VelocityContext context = new VelocityContext();
 		context.put("chart", chart.getChartTag());
 
-		return mergeToInputStream(context, TPL_MULTI_SERIES);
+		return mergeToInputStream(context, TPL_STACKED);
 	}
 
 	public InputStream generateScrollDataTemplate(ScrollChart chart) {
 		final VelocityContext context = new VelocityContext();
 		context.put("chart", chart.getChartTag());
 
-		return mergeToInputStream(context, TPL_MULTI_SERIES);
+		return mergeToInputStream(context, TPL_SCROLL);
 	}
 
 	private InputStream mergeToInputStream(final VelocityContext context,
 			final String tpl) {
 		Template template = null;
 		try {
-			template = velocityEngine.getTemplate(TPL_MULTI_SERIES, UTF_8);
+			template = velocityEngine.getTemplate(tpl, UTF_8);
 
 			StringWriter writer = new StringWriter();
 			template.merge(context, writer);
 
-			System.out.println(writer.toString());
 			return IOUtils.toInputStream(writer.toString());
 		} catch (ResourceNotFoundException e) {
 			throw new IllegalStateException(e);

@@ -7,7 +7,6 @@ import java.util.List;
 import com.vaadin.terminal.Resource;
 
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.CategoryTag;
-import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.DataTag;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.DatasetTag;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.LineTag;
 

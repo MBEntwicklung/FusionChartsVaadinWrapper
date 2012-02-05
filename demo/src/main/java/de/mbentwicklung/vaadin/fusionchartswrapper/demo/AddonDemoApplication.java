@@ -1,7 +1,12 @@
 package de.mbentwicklung.vaadin.fusionchartswrapper.demo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.vaadin.Application;
 import com.vaadin.ui.GridLayout;
+import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Area2D;
@@ -12,11 +17,14 @@ import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Doughnut2D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Doughnut3D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.FusionChart;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Line;
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.MSArea;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Pareto2D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Pareto3D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Pie2D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Pie3D;
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.CategoryTag;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.DataTag;
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.DatasetTag;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.LineTag;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.SetTag;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.VLineTag;
@@ -33,22 +41,41 @@ public class AddonDemoApplication extends Application {
 		window = new Window("My Vaadin Application");
 		setMainWindow(window);
 
-		final GridLayout layout = new GridLayout(3, 4);
+		final VerticalLayout mainLayout = new VerticalLayout();
+		final GridLayout singleSeriesCharts = new GridLayout(3, 4);
 
-		layout.addComponent(createColumn2D());
-		layout.addComponent(createColumn3D());
-		layout.addComponent(createBar2D());
-		layout.addComponent(createLine());
-		layout.addComponent(createArea2D());
-		layout.addComponent(createPie2D());
-		layout.addComponent(createPie3D());
-		layout.addComponent(createDoughnut2D());
-		layout.addComponent(createDoughnut3D());
-		layout.addComponent(createPareto2D());
-		layout.addComponent(createPareto3D());
+		singleSeriesCharts.addComponent(createColumn2D());
+		singleSeriesCharts.addComponent(createColumn3D());
+		singleSeriesCharts.addComponent(createBar2D());
+		singleSeriesCharts.addComponent(createLine());
+		singleSeriesCharts.addComponent(createArea2D());
+		singleSeriesCharts.addComponent(createPie2D());
+		singleSeriesCharts.addComponent(createPie3D());
+		singleSeriesCharts.addComponent(createDoughnut2D());
+		singleSeriesCharts.addComponent(createDoughnut3D());
+		singleSeriesCharts.addComponent(createPareto2D());
+		singleSeriesCharts.addComponent(createPareto3D());
+		mainLayout.addComponent(singleSeriesCharts);
 
-		window.setContent(layout);
+		final GridLayout multiSeriesCharts = new GridLayout(3, 4);
+		multiSeriesCharts.addComponent(createMSArea());
+		mainLayout.addComponent(multiSeriesCharts);
+
+		final GridLayout stackedCharts = new GridLayout(3, 4);
+		mainLayout.addComponent(stackedCharts);
+
+		final GridLayout scrollCharts = new GridLayout(3, 4);
+		mainLayout.addComponent(scrollCharts);
+
+		final GridLayout otherCharts = new GridLayout(3, 4);
+		mainLayout.addComponent(otherCharts);
+
+		window.setContent(mainLayout);
 	}
+
+	/*
+	 * Single Series Charts
+	 */
 
 	private FusionChart createColumn2D() {
 		Column2D column2d = new Column2D();
@@ -128,9 +155,8 @@ public class AddonDemoApplication extends Application {
 	}
 
 	private LineTag[] createTrendlines() {
-		final LineTag[] lineTags = new LineTag[] {
-				new LineTag(17, "00cc00", "Average")
-		};
+		final LineTag[] lineTags = new LineTag[] { new LineTag(17, "00cc00",
+				"Average") };
 		return lineTags;
 	}
 
@@ -141,6 +167,33 @@ public class AddonDemoApplication extends Application {
 				new SetTag("data 5", 10), new SetTag("data 6", 5), };
 		return datas;
 	}
-	
-	
+
+	/*
+	 * Multi Series Charts
+	 */
+
+	private FusionChart createMSArea() {
+		MSArea msArea = new MSArea();
+		msArea.setTrendlines(Arrays.asList(createTrendlines()));
+		msArea.setCategories(createCategoryTags());
+		msArea.setDatasets(createDatasetTags());
+		return msArea;
+	}
+
+	private List<CategoryTag> createCategoryTags() {
+		final List<CategoryTag> categories = new ArrayList<CategoryTag>();
+		categories.add(new CategoryTag("A"));
+		categories.add(new CategoryTag("B"));
+		categories.add(new CategoryTag("C"));
+		return categories;
+	}
+
+	private List<DatasetTag> createDatasetTags() {
+		final List<DatasetTag> categories = new ArrayList<DatasetTag>();
+		categories.add(new DatasetTag("data 1", new SetTag(10), new SetTag(15),
+				new SetTag(12)));
+		categories.add(new DatasetTag("data 2", new SetTag(4), new SetTag(23),
+				new SetTag(5)));
+		return categories;
+	}
 }
