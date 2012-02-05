@@ -14,13 +14,5 @@ public class Column3D extends SingleSeriesChart {
 
 	public Column3D(final Application application) {
 		super("Charts/Column3D.swf");
-
-		application.getMainWindow().addURIHandler(createDataChartHandler());
 	}
-
-	@Override
-	protected String getChartId() {
-		return getClass().getCanonicalName();
-	}
-
 }

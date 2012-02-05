@@ -7,13 +7,5 @@ public class Pareto2D extends SingleSeriesChart {
 
 	public Pareto2D(final Application application) {
 		super("Charts/Pareto2D.swf");
-
-		application.getMainWindow().addURIHandler(createDataChartHandler());
 	}
-
-	@Override
-	protected String getChartId() {
-		return getClass().getCanonicalName();
-	}
-
 }
