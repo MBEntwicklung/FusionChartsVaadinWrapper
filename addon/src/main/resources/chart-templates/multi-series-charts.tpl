@@ -5,15 +5,27 @@
 	yAxisName='${chart.yAxisName}' 
 	numberPrefix='${chart.numberPrefix}'>
  
+    <categories>
+ 
 #foreach( $set in $sets )
-	#if ($set.dataType == "SET")
-	<set label='$set.label' value='$set.value' />
+	#if ($set.dataType == "CETEGORY")
+	<category label='$set.value' />
 	#end
 	#if ($set.dataType == "VLINE")
 	<vLine color='$set.color' thickness='$set.thickness'/>
 	#end
 #end
 
+    </categories>
+ 
+#foreach( $dataset in $datasets )
+    <dataset seriesName='$dataset.seriesName'>
+    #foreach( $set in $dataset.sets )
+       <set value='set.value' />
+    #end
+    </dataset>
+#end
+ 
 <trendlines>
 #foreach( $line in $trendlines )
 	<line startValue='$line.startValue' color='$line.color' displayValue='$line.displayValue' />
@@ -21,4 +33,4 @@
 </trendlines>
  
 
- </chart>
+ </chart> 

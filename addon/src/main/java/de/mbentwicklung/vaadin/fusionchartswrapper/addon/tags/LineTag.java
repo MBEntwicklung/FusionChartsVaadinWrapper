@@ -1,19 +1,19 @@
-package de.mbentwicklung.vaadin.fusionchartswrapper.addon;
+package de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags;
 
-public class Line {
+public class LineTag {
 
-	private final String startValue;
+	private final int startValue;
 	private final String color;
 	private final String displayValue;
 
-	public Line(String startValue, String color, String displayValue) {
+	public LineTag(int startValue, String color, String displayValue) {
 		super();
 		this.startValue = startValue;
 		this.color = color;
 		this.displayValue = displayValue;
 	}
 
-	public String getStartValue() {
+	public int getStartValue() {
 		return startValue;
 	}
 

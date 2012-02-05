@@ -7,28 +7,29 @@ import java.util.List;
 
 import com.vaadin.terminal.Resource;
 
-import de.mbentwicklung.vaadin.fusionchartswrapper.addon.Data;
-import de.mbentwicklung.vaadin.fusionchartswrapper.addon.Line;
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.DataTag;
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.LineTag;
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.SetTag;
 
 @SuppressWarnings("serial")
 public abstract class SingleSeriesChart extends FusionChart {
 
-	private final List<Data> datas;
+	private final List<DataTag> datas;
 
-	private final List<Line> trendlines;
+	private final List<LineTag> trendlines;
 
 	public SingleSeriesChart(final String swfFilePath) {
 		super(swfFilePath);
 
-		this.datas = new ArrayList<Data>();
-		this.trendlines = new ArrayList<Line>();
+		this.datas = new ArrayList<DataTag>();
+		this.trendlines = new ArrayList<LineTag>();
 	}
 
 	public SingleSeriesChart(Resource chartResource) {
 		super(chartResource);
 
-		this.datas = new ArrayList<Data>();
-		this.trendlines = new ArrayList<Line>();
+		this.datas = new ArrayList<DataTag>();
+		this.trendlines = new ArrayList<LineTag>();
 	}
 	
 	@Override
@@ -38,24 +39,24 @@ public abstract class SingleSeriesChart extends FusionChart {
 
 	@Override
 	public void setData(Object data) {
-		if (data instanceof Data) {
-			addData((Data) data);
+		if (data instanceof DataTag) {
+			addData((SetTag) data);
 		}
 	}
 
-	public void addData(final Data ... data) {
+	public void addData(final DataTag ... data) {
 		datas.addAll(Arrays.asList(data));
 	}
 
-	public List<Data> getDatas() {
+	public List<DataTag> getDatas() {
 		return datas;
 	}
 
-	public void addTrendLine(final Line line) {
+	public void addTrendLine(final LineTag... line) {
 		trendlines.addAll(Arrays.asList(line));
 	}
 	
-	public List<Line> getTrendlines() {
+	public List<LineTag> getTrendlines() {
 		return trendlines;
 	}
 }

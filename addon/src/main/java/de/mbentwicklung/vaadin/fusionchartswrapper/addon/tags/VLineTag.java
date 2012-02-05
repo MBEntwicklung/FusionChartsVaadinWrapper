@@ -1,11 +1,11 @@
-package de.mbentwicklung.vaadin.fusionchartswrapper.addon;
+package de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags;
 
-public class VLine {
+public class VLineTag extends DataTag {
 
 	private final String color;
 	private final int thickness;
 
-	public VLine(String color, int thickness) {
+	public VLineTag(String color, int thickness) {
 		super();
 		this.color = color;
 		this.thickness = thickness;
@@ -19,4 +19,8 @@ public class VLine {
 		return thickness;
 	}
 
+	@Override
+	public DataType getDataType() {
+		return DataType.VLINE;
+	}
 }

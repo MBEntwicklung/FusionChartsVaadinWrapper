@@ -12,6 +12,7 @@ import com.vaadin.ui.Embedded;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.DataHandler;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.DownloadTicket;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.datagenerator.XmlDataGenerator;
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.ChartTag;
 
 /**
  * @author Marc Bellmann
@@ -24,10 +25,7 @@ public abstract class FusionChart extends Embedded {
 	protected final XmlDataGenerator xmlDataGenerator;
 	protected final String dataDownloadId;
 
-	private String subcaption;
-	private String xAxisName;
-	private String yAxisName;
-	private String numberPrefix;
+	private ChartTag chartTag;
 
 	public FusionChart(final String swfFilePath) {
 		this(new ThemeResource(swfFilePath));
@@ -39,7 +37,6 @@ public abstract class FusionChart extends Embedded {
 		this.xmlDataGenerator = new XmlDataGenerator();
 		this.dataDownloadId = "FusionChart_"
 				+ DownloadTicket.getNewDownloadTicketNumber() + ".xml";
-		System.out.println(dataDownloadId);
 
 		setWidth("400px");
 		setHeight("400px");
@@ -65,42 +62,11 @@ public abstract class FusionChart extends Embedded {
 
 	protected abstract InputStream getXmlDataInputStream();
 
-	public String getSubcaption() {
-		return (subcaption == null) ? "" : subcaption;
+	public ChartTag getChartTag() {
+		return (chartTag == null) ? new ChartTag("", "", "", "", "") : chartTag;
 	}
 
-	public void setSubcaption(String subcaption) {
-		this.subcaption = subcaption;
+	public void setChartTag(ChartTag chartTag) {
+		this.chartTag = chartTag;
 	}
-
-	public String getxAxisName() {
-		return (xAxisName == null) ? "" : xAxisName;
-	}
-
-	public void setxAxisName(String xAxisName) {
-		this.xAxisName = xAxisName;
-	}
-
-	public String getyAxisName() {
-		return (yAxisName == null) ? "" : yAxisName;
-	}
-
-	public void setyAxisName(String yAxisName) {
-		this.yAxisName = yAxisName;
-	}
-
-	public String getNumberPrefix() {
-		return (numberPrefix == null) ? "" : numberPrefix;
-	}
-
-	public void setNumberPrefix(String numberPrefix) {
-		this.numberPrefix = numberPrefix;
-	}
-	
-	@Override
-	public String getCaption() {
-		final String caption = super.getCaption();
-		return (caption == null) ? "" : caption;	
-	}
-
 }
