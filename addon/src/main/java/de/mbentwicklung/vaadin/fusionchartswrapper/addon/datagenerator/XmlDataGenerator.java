@@ -12,6 +12,7 @@ import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
 
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.MultiSeriesCharts;
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.ScrollChart;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.SingleSeriesChart;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.StackedChart;
 
@@ -38,75 +39,47 @@ public class XmlDataGenerator {
 			final SingleSeriesChart chart) {
 		final VelocityContext context = new VelocityContext();
 
-		Template template = null;
-
-		try {
-			context.put("chart", chart.getChartTag());
-			context.put("sets", chart.getDatas());
-			context.put("trendlines", chart.getTrendlines());
-
-			template = velocityEngine.getTemplate(TPL_SINGLE_SERIES, UTF_8);
-
-			StringWriter writer = new StringWriter();
-			template.merge(context, writer);
-
-			return IOUtils.toInputStream(writer.toString());
-		} catch (ResourceNotFoundException e) {
-			throw new IllegalStateException(e);
-		} catch (ParseErrorException e) {
-			throw new IllegalStateException(e);
-		} catch (MethodInvocationException e) {
-			throw new IllegalStateException(e);
-		} catch (Exception e) {
-			throw new IllegalStateException(e);
-		}
+		context.put("chart", chart.getChartTag());
+		context.put("sets", chart.getDatas());
+		context.put("trendlines", chart.getTrendlines());
+		
+		return mergeToInputStream(context, TPL_SINGLE_SERIES);
 	}
 
 	public InputStream generateMultiSeriesDataTemplate(
 			final MultiSeriesCharts chart) {
 		final VelocityContext context = new VelocityContext();
-
-		Template template = null;
-
-		try {
-			context.put("chart", chart.getChartTag());
-			context.put("categories", chart.getCategories());
-			context.put("datasets", chart.getDatasets());
-			context.put("trendlines", chart.getTrendlines());
-
-			template = velocityEngine.getTemplate(TPL_MULTI_SERIES, UTF_8);
-
-			StringWriter writer = new StringWriter();
-			template.merge(context, writer);
-
-			return IOUtils.toInputStream(writer.toString());
-		} catch (ResourceNotFoundException e) {
-			throw new IllegalStateException(e);
-		} catch (ParseErrorException e) {
-			throw new IllegalStateException(e);
-		} catch (MethodInvocationException e) {
-			throw new IllegalStateException(e);
-		} catch (Exception e) {
-			throw new IllegalStateException(e);
-		}
+		context.put("chart", chart.getChartTag());
+		context.put("categories", chart.getCategories());
+		context.put("datasets", chart.getDatasets());
+		context.put("trendlines", chart.getTrendlines());
+		return mergeToInputStream(context, TPL_MULTI_SERIES);
 	}
 
 	public InputStream generateStackedDataTemplate(final StackedChart chart) {
 		final VelocityContext context = new VelocityContext();
+		context.put("chart", chart.getChartTag());
 
+		return mergeToInputStream(context, TPL_MULTI_SERIES);
+	}
+
+	public InputStream generateScrollDataTemplate(ScrollChart chart) {
+		final VelocityContext context = new VelocityContext();
+		context.put("chart", chart.getChartTag());
+
+		return mergeToInputStream(context, TPL_MULTI_SERIES);
+	}
+
+	private InputStream mergeToInputStream(final VelocityContext context,
+			final String tpl) {
 		Template template = null;
-
 		try {
-			context.put("chart", chart.getChartTag());
-			// context.put("categories", chart.getCategories());
-			// context.put("datasets", chart.getDatasets());
-			// context.put("trendlines", chart.getTrendlines());
-
 			template = velocityEngine.getTemplate(TPL_MULTI_SERIES, UTF_8);
 
 			StringWriter writer = new StringWriter();
 			template.merge(context, writer);
 
+			System.out.println(writer.toString());
 			return IOUtils.toInputStream(writer.toString());
 		} catch (ResourceNotFoundException e) {
 			throw new IllegalStateException(e);
@@ -118,5 +91,4 @@ public class XmlDataGenerator {
 			throw new IllegalStateException(e);
 		}
 	}
-
 }
