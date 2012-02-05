@@ -38,19 +38,28 @@ public class XmlDataGenerator {
 		Template template = null;
 
 		try {
+			context.put("caption", chart.getCaption());
+			context.put("subcaption", chart.getSubcaption());
+			context.put("xAxisName", chart.getxAxisName());
+			context.put("yAxisName", chart.getyAxisName());
+			context.put("numberPrefix", chart.getNumberPrefix());
+			context.put("sets", chart.getDatas().toArray());
+
 			template = velocityEngine.getTemplate(TPL_SINGLE_SERIES, UTF_8);
 			
-			velocityEngine.addProperty("", chart.getDatas());
 			StringWriter writer = new StringWriter();
 			template.merge(context, writer);
-
+			
 			return IOUtils.toInputStream(writer.toString());
-		} catch (ResourceNotFoundException rnfe) {
-		} catch (ParseErrorException pee) {
-		} catch (MethodInvocationException mie) {
+		} catch (ResourceNotFoundException e) {
+			throw new IllegalStateException(e);
+		} catch (ParseErrorException e) {
+			throw new IllegalStateException(e);
+		} catch (MethodInvocationException e) {
+			throw new IllegalStateException(e);
 		} catch (Exception e) {
+			throw new IllegalStateException(e);
 		}
-		return null;
 	}
 
 }

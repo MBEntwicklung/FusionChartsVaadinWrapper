@@ -1,7 +1,12 @@
-<chart caption='Monthly Sales Summary' subcaption='For the year 2006' xAxisName='Month' yAxisName='Sales' numberPrefix='$'>
+<chart 
+	caption='${caption}' 
+	subcaption='${subcaption}' 
+	xAxisName='${xAxisName}' 
+	yAxisName='${yAxisName}' 
+	numberPrefix='${numberPrefix}'>
  
-     <set label='January' value='17400' />
-     <set label='February' value='19800' />
-     <set label='March' value='21800' />
+#foreach( $set in $sets )
+     <set label='$set.label' value='$set.value' />
+#end
 
  </chart>
