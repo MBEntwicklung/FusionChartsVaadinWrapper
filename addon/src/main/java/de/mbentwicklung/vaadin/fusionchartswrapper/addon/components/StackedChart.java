@@ -17,6 +17,10 @@ public class StackedChart extends FusionChart {
 	public StackedChart(Resource chartResource) {
 		super(chartResource);
 	}
+	
+	public StackedChart(String chartResource) {
+		super(chartResource);
+	}
 
 	@Override
 	protected InputStream getXmlDataInputStream() {
