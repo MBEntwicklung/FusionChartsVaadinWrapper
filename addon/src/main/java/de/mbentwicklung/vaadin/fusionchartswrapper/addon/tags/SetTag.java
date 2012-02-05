@@ -18,6 +18,10 @@ public class SetTag extends DataTag {
 		this.value = value;
 	}
 
+	public SetTag(Number value) {
+		this("", value);
+	}
+
 	public String getLabel() {
 		return label;
 	}

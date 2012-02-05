@@ -37,6 +37,7 @@ public abstract class FusionChart extends Embedded {
 		this.xmlDataGenerator = new XmlDataGenerator();
 		this.dataDownloadId = "FusionChart_"
 				+ DownloadTicket.getNewDownloadTicketNumber() + ".xml";
+		System.out.println(dataDownloadId + " = " + getClass().getCanonicalName());
 
 		setWidth("400px");
 		setHeight("400px");
