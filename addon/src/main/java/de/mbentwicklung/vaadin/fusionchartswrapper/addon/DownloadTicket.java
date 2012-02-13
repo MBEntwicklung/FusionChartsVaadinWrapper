@@ -21,5 +21,4 @@ public final class DownloadTicket {
 				FIRST_DOWNLOAD_TICKET_NUMBER);
 		return downloadTicketNumber.incrementAndGet();
 	}
-
 }

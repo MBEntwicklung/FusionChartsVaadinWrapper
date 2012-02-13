@@ -3,16 +3,16 @@
  */
 package de.mbentwicklung.vaadin.fusionchartswrapper.addon.components;
 
-import java.io.InputStream;
-
 import com.vaadin.terminal.Resource;
+
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.datagenerator.StringDataGenerator;
 
 /**
  * @author marc
  * 
  */
 @SuppressWarnings("serial")
-public class ScrollChart extends FusionChart {
+public class ScrollChart extends AbstractFusionChart {
 
 	public ScrollChart(String chartResource) {
 		super(chartResource);
@@ -23,8 +23,8 @@ public class ScrollChart extends FusionChart {
 	}
 
 	@Override
-	protected InputStream getXmlDataInputStream() {
-		return xmlDataGenerator.generateScrollDataTemplate(this);
+	protected String getDataAsString() {
+		return new StringDataGenerator().generateScrollDataTemplate(this);
 	}
 
 }

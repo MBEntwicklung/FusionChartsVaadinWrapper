@@ -1,17 +1,17 @@
 package de.mbentwicklung.vaadin.fusionchartswrapper.addon.components;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.vaadin.terminal.Resource;
 
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.datagenerator.StringDataGenerator;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.CategoryTag;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.DatasetTag;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.LineTag;
 
 @SuppressWarnings("serial")
-public abstract class MultiSeriesCharts extends FusionChart {
+public abstract class MultiSeriesCharts extends AbstractFusionChart {
 
 	private List<DatasetTag> datasets;
 	private List<LineTag> trendlines;
@@ -34,8 +34,8 @@ public abstract class MultiSeriesCharts extends FusionChart {
 	}
 
 	@Override
-	protected InputStream getXmlDataInputStream() {
-		return xmlDataGenerator.generateMultiSeriesDataTemplate(this);
+	protected String getDataAsString() {
+		return new StringDataGenerator().generateMultiSeriesDataTemplate(this);
 	}
 
 	public List<DatasetTag> getDatasets() {

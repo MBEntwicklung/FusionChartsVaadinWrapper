@@ -19,6 +19,13 @@
 			<artifactId>vaadin</artifactId>
 			<version>${vaadin.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>de.mbentwicklung.vaadin</groupId>
+			<artifactId>fusion-charts-wrapper-chart-component</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>

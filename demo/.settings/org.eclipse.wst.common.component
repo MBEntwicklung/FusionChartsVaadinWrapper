@@ -8,6 +8,9 @@
         <dependent-module archiveName="fusion-charts-wrapper-addon-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fusion-charts-wrapper-addon/fusion-charts-wrapper-addon">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="fusion-charts-wrapper-chart-component-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fusion-charts-wrapper-chart-component/fusion-charts-wrapper-chart-component">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="fusion-charts-wrapper-demo"/>
         <property name="java-output-path" value="/fusion-charts-wrapper-demo/target/classes"/>
     </wb-module>

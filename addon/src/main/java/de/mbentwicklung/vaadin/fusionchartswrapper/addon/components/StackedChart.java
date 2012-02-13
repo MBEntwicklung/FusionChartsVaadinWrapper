@@ -3,28 +3,28 @@
  */
 package de.mbentwicklung.vaadin.fusionchartswrapper.addon.components;
 
-import java.io.InputStream;
-
 import com.vaadin.terminal.Resource;
+
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.datagenerator.StringDataGenerator;
 
 /**
  * @author marc
  * 
  */
 @SuppressWarnings("serial")
-public class StackedChart extends FusionChart {
+public class StackedChart extends AbstractFusionChart {
 
 	public StackedChart(Resource chartResource) {
 		super(chartResource);
 	}
-	
+
 	public StackedChart(String chartResource) {
 		super(chartResource);
 	}
 
 	@Override
-	protected InputStream getXmlDataInputStream() {
-		return xmlDataGenerator.generateStackedDataTemplate(this);
+	protected String getDataAsString() {
+		return new StringDataGenerator().generateStackedDataTemplate(this);
 	}
 
 }

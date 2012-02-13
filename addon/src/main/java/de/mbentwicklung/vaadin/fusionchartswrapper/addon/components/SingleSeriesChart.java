@@ -1,18 +1,18 @@
 package de.mbentwicklung.vaadin.fusionchartswrapper.addon.components;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import com.vaadin.terminal.Resource;
 
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.datagenerator.StringDataGenerator;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.DataTag;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.LineTag;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.tags.SetTag;
 
 @SuppressWarnings("serial")
-public abstract class SingleSeriesChart extends FusionChart {
+public abstract class SingleSeriesChart extends AbstractFusionChart {
 
 	private final List<DataTag> datas;
 
@@ -31,10 +31,10 @@ public abstract class SingleSeriesChart extends FusionChart {
 		this.datas = new ArrayList<DataTag>();
 		this.trendlines = new ArrayList<LineTag>();
 	}
-	
+
 	@Override
-	protected InputStream getXmlDataInputStream() {
-		return xmlDataGenerator.generateSingleSeriesDataTemplate(this);
+	protected String getDataAsString() {
+		return new StringDataGenerator().generateSingleSeriesDataTemplate(this);
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public abstract class SingleSeriesChart extends FusionChart {
 		}
 	}
 
-	public void addData(final DataTag ... data) {
+	public void addData(final DataTag... data) {
 		datas.addAll(Arrays.asList(data));
 	}
 
@@ -55,8 +55,10 @@ public abstract class SingleSeriesChart extends FusionChart {
 	public void addTrendLine(final LineTag... line) {
 		trendlines.addAll(Arrays.asList(line));
 	}
-	
+
 	public List<LineTag> getTrendlines() {
 		return trendlines;
 	}
+
+	
 }

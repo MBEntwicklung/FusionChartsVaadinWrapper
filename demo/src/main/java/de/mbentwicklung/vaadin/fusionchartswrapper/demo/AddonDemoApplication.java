@@ -9,13 +9,13 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
+import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.AbstractFusionChart;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Area2D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Bar2D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Column2D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Column3D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Doughnut2D;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Doughnut3D;
-import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.FusionChart;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Line;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.MSArea;
 import de.mbentwicklung.vaadin.fusionchartswrapper.addon.components.Pareto2D;
@@ -38,6 +38,9 @@ public class AddonDemoApplication extends Application {
 
 	@Override
 	public void init() {
+		window = new Window("My Vaadin Application");
+		setMainWindow(window);
+
 		window = new Window("My Vaadin Application");
 		setMainWindow(window);
 
@@ -77,77 +80,77 @@ public class AddonDemoApplication extends Application {
 	 * Single Series Charts
 	 */
 
-	private FusionChart createColumn2D() {
+	private AbstractFusionChart createColumn2D() {
 		Column2D column2d = new Column2D();
 		column2d.addData(createExampleDatas());
 		column2d.addTrendLine(createTrendlines());
 		return column2d;
 	}
 
-	private FusionChart createColumn3D() {
+	private AbstractFusionChart createColumn3D() {
 		Column3D column3d = new Column3D();
 		column3d.addData(createExampleDatas());
 		column3d.addTrendLine(createTrendlines());
 		return column3d;
 	}
 
-	private FusionChart createBar2D() {
+	private AbstractFusionChart createBar2D() {
 		Bar2D bar2d = new Bar2D();
 		bar2d.addData(createExampleDatas());
 		bar2d.addTrendLine(createTrendlines());
 		return bar2d;
 	}
 
-	private FusionChart createLine() {
+	private AbstractFusionChart createLine() {
 		Line line = new Line();
 		line.addData(createExampleDatas());
 		line.addTrendLine(createTrendlines());
 		return line;
 	}
 
-	private FusionChart createArea2D() {
+	private AbstractFusionChart createArea2D() {
 		Area2D area2d = new Area2D();
 		area2d.addData(createExampleDatas());
 		area2d.addTrendLine(createTrendlines());
 		return area2d;
 	}
 
-	private FusionChart createPie2D() {
+	private AbstractFusionChart createPie2D() {
 		Pie2D pie2d = new Pie2D();
 		pie2d.addData(createExampleDatas());
 		pie2d.addTrendLine(createTrendlines());
 		return pie2d;
 	}
 
-	private FusionChart createPie3D() {
+	private AbstractFusionChart createPie3D() {
 		Pie3D pie3d = new Pie3D();
 		pie3d.addData(createExampleDatas());
 		pie3d.addTrendLine(createTrendlines());
 		return pie3d;
 	}
 
-	private FusionChart createDoughnut2D() {
+	private AbstractFusionChart createDoughnut2D() {
 		Doughnut2D doughnut2d = new Doughnut2D();
 		doughnut2d.addData(createExampleDatas());
 		doughnut2d.addTrendLine(createTrendlines());
 		return doughnut2d;
 	}
 
-	private FusionChart createDoughnut3D() {
+	private AbstractFusionChart createDoughnut3D() {
 		Doughnut3D doughnut3d = new Doughnut3D();
 		doughnut3d.addData(createExampleDatas());
 		doughnut3d.addTrendLine(createTrendlines());
 		return doughnut3d;
 	}
 
-	private FusionChart createPareto2D() {
+	private AbstractFusionChart createPareto2D() {
 		Pareto2D pareto2d = new Pareto2D();
 		pareto2d.addData(createExampleDatas());
 		pareto2d.addTrendLine(createTrendlines());
 		return pareto2d;
 	}
 
-	private FusionChart createPareto3D() {
+	private AbstractFusionChart createPareto3D() {
 		Pareto3D pareto3d = new Pareto3D();
 		pareto3d.addData(createExampleDatas());
 		pareto3d.addTrendLine(createTrendlines());
@@ -172,7 +175,7 @@ public class AddonDemoApplication extends Application {
 	 * Multi Series Charts
 	 */
 
-	private FusionChart createMSArea() {
+	private AbstractFusionChart createMSArea() {
 		MSArea msArea = new MSArea();
 		msArea.setTrendlines(Arrays.asList(createTrendlines()));
 		msArea.setCategories(createCategoryTags());
